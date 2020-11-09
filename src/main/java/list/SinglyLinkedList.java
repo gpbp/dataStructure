@@ -2,9 +2,6 @@ package list;
 
 import exception.IndexOutOfBoundException;
 
-import java.util.Iterator;
-import java.util.function.Consumer;
-
 public class SinglyLinkedList<T> {
     private int size = 0; // number of elements
     private Node tail; // last element of the list

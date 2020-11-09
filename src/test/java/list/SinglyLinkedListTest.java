@@ -1,10 +1,14 @@
 package list;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.junit.After;
 import org.junit.Test;
 
 
 public class SinglyLinkedListTest {
+    private final Logger logger = LogManager.getLogger(SinglyLinkedListTest.class);
+
     private SinglyLinkedList<Integer> linkedList = new SinglyLinkedList();
 
     @After
@@ -22,6 +26,7 @@ public class SinglyLinkedListTest {
     public void addTwoElement() {
         linkedList.add(5);
         linkedList.add(6);
+        logger.info(linkedList.get(1));
         assert(linkedList.get(1) == 6);
         assert(linkedList.get(0) == 5);
         assert(linkedList.size() == 2);
