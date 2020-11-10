@@ -3,41 +3,57 @@ package list;
 import exception.IndexOutOfBoundException;
 
 public class SinglyLinkedList<T> {
-    private int size = 0; // number of elements
+    private int size; // number of elements
     private Node tail; // last element of the list
     private Node head; // first element of the list
 
     public void add(T value) {
-        Node newNode = createNewNode(value);
-        if (size == 0) {
-            newNode.nextElement = null;
-            head = newNode;
-            tail = newNode;
+        addFirst(value);
+    }
+
+    public void addFirst(T value) {
+        if (isEmpty()) {
+            head = tail = new Node(value, null);
         } else {
-            newNode.nextElement = head;
+            Node<T> newNode = new Node(value, head);
             head = newNode;
         }
         size++;
     }
 
-    public void add(int index, T value) {
-        if (index < 0 && index > size) throw new IndexOutOfBoundsException();
-        if (index == 0) {
-            add(value);
+    public void add(T value, int index) throws IndexOutOfBoundException {
+        if (index < 0 || index >= size) throw new IndexOutOfBoundException();
+        if (index == size - 1) {
+            addLast(value);
+        } else if (index == 0) {
+            addFirst(value);
         } else {
-            Node nodeToAdd = createNewNode(value);
-            Node traversePointer = head;
+            Node<T> newNode = new Node(value, null);
+            Node<T> traversePointer = head;
             int i = 0;
-            while (traversePointer.nextElement != null) {
+            while (traversePointer != null) {
                 if (i == index - 1) {
-                    nodeToAdd.nextElement = traversePointer.nextElement;
-                    traversePointer.nextElement = nodeToAdd;
+                   newNode.nextElement = traversePointer.nextElement;
+                   traversePointer.nextElement = newNode;
                 }
                 i++;
                 traversePointer = traversePointer.nextElement;
             }
         }
+    }
+
+    public void addLast(T value) {
+        if (isEmpty()) {
+            head = tail = new Node(value, null);
+        } else {
+            Node<T> newNode = new Node(value, null);
+            tail.nextElement = newNode;
+        }
         size++;
+    }
+
+    public boolean isEmpty() {
+        return size == 0;
     }
 
     public void clear() {
@@ -48,9 +64,9 @@ public class SinglyLinkedList<T> {
 
     public T get(int index) {
         int i = 0;
-        Node traversePointer = head;
+        Node<T> traversePointer = head;
         T result = null;
-        while (traversePointer.nextElement != null) {
+        while (traversePointer != null) {
             if (i == index) {
                 result = traversePointer.value;
             }
@@ -60,22 +76,18 @@ public class SinglyLinkedList<T> {
         return result;
     }
 
-
-    private Node createNewNode(T value) {
-        return new Node(value);
-    }
-
     public int size() {
         return size;
     }
 
-    // internal class represents one element of the linked list
-    private class Node {
-        private Node nextElement;
+    // internal class represents one node of the linked list
+    private static class Node<T> {
+        private Node<T> nextElement;
         private T value;
 
-        Node(T value) {
+        Node(T value, Node<T> nextElement) {
             this.value = value;
+            this.nextElement = nextElement;
         }
     }
 
