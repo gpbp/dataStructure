@@ -17,22 +17,22 @@ public class SinglyLinkedListTest {
     @Test
     public void addOneElement() {
         linkedList.add(4);
-        assert(linkedList.size() == 1);
+        assertTrue(linkedList.size() == 1);
     }
 
     @Test
     public void addTwoElement() {
         linkedList.add(5);
         linkedList.add(6);
-        assert(linkedList.size() == 2);
-        assert(linkedList.get(1) == 5);
+        assertTrue(linkedList.size() == 2);
+        assertTrue(linkedList.get(1) == 5);
     }
 
     @Test
     public void addFirstElement() {
         linkedList.addFirst(5);
-        assert(linkedList.size() == 1);
-        assert(linkedList.get(0) == 5);
+        assertTrue(linkedList.size() == 1);
+        assertTrue(linkedList.get(0) == 5);
     }
 
     @Test
@@ -41,8 +41,8 @@ public class SinglyLinkedListTest {
         linkedList.add(2);
         linkedList.add(3);
         linkedList.addLast(6);
-        assert(linkedList.size() == 4);
-        assert(linkedList.get(3) == 6);
+        assertTrue(linkedList.size() == 4);
+        assertTrue(linkedList.get(3) == 6);
     }
 
     @Test
@@ -54,8 +54,8 @@ public class SinglyLinkedListTest {
         linkedList.add(5);
         linkedList.add(6);
         linkedList.add(7, 3);
-        assert(linkedList.size() == 7);
-        assert(linkedList.get(3) == 7);
+        assertTrue(linkedList.size() == 7);
+        assertTrue(linkedList.get(3) == 7);
     }
 
     @Test
