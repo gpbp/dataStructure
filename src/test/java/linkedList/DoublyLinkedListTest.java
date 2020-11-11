@@ -73,7 +73,7 @@ public class DoublyLinkedListTest {
         doublyLinkedList.add(7);
         doublyLinkedList.add(8);
         doublyLinkedList.add(9);
-        assertTrue(doublyLinkedList.remove(1) == 8);
+        assertTrue(doublyLinkedList.remove(1).intValue() == 8);
         assertTrue(doublyLinkedList.size() == 4);
     }
 }

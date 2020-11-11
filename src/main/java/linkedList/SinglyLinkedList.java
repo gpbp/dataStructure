@@ -110,6 +110,31 @@ public class SinglyLinkedList<T> {
         }
     }
 
+    public T remove(int index) {
+        if (isEmpty()) {
+            return null;
+        } else if (index == 0)
+            return removeFirst();
+        else if (index == size - 1)
+            return removeLast();
+        else {
+            Node<T> traversePointer1 = head;
+            Node<T> traversePointer2 = head.nextElement;
+            Node<T> result = traversePointer2;
+            for (int i = 0; i < size; i++) {
+                if (i == index - 1) {
+                    traversePointer1.nextElement = traversePointer2.nextElement;
+                    traversePointer2.nextElement = null;
+                    break;
+                }
+                traversePointer1 = traversePointer1.nextElement;
+                traversePointer2 = traversePointer2.nextElement;
+            }
+            size--;
+            return result.value;
+        }
+    }
+
     // internal class represents one node of the linked list
     private static class Node<T> {
         private Node<T> nextElement;

@@ -132,13 +132,26 @@ public class DoublyLinkedList<T> {
     public T remove(int index) {
         if (isEmpty()) {
             return null;
+        } else if (index == size - 1) {
+            return removeLast();
+        } else if (index == 0) {
+            return removeFirst();
         } else {
             Node<T> result = null;
-            Node<T> traversePointer1 = head;
-            Node<T> traversePointer2 = head;
+            Node<T> traversePointer = head;
+            int i = 0;
             while (traversePointer != null) {
-
+                if (index == i) {
+                    traversePointer.nextElement.previousElement = traversePointer.previousElement;
+                    traversePointer.previousElement.nextElement = traversePointer.nextElement;
+                    traversePointer.nextElement = traversePointer.previousElement = null;
+                    result = traversePointer;
+                    break;
+                }
+                i++;
+                traversePointer = traversePointer.nextElement;
             }
+            size--;
             return result.value;
         }
     }

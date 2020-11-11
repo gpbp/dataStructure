@@ -1,7 +1,6 @@
 package linkedList;
 
 import exception.IndexOutOfBoundException;
-import linkedList.SinglyLinkedList;
 import org.junit.After;
 import org.junit.Test;
 
@@ -78,5 +77,16 @@ public class SinglyLinkedListTest {
         linkedList.add(4);
         assertTrue(linkedList.removeLast() == 1);
         assertTrue(linkedList.size() == 3);
+    }
+
+    @Test
+    public void removeNthElement() {
+        linkedList.add(1);
+        linkedList.add(2);
+        linkedList.add(3);
+        linkedList.add(4);
+        linkedList.add(5);
+        assertTrue(linkedList.remove(1) == 4);
+        assertTrue(linkedList.size() == 4);
     }
 }
