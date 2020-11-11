@@ -1,4 +1,4 @@
-package list;
+package linkedList;
 
 import exception.IndexOutOfBoundException;
 
@@ -28,18 +28,18 @@ public class SinglyLinkedList<T> {
         } else if (index == 0) {
             addFirst(value);
         } else {
-            Node<T> newNode = new Node(value, null);
             Node<T> traversePointer = head;
             int i = 0;
             while (traversePointer != null) {
                 if (i == index - 1) {
-                   newNode.nextElement = traversePointer.nextElement;
-                   traversePointer.nextElement = newNode;
+                    Node<T> newNode = new Node(value, traversePointer.nextElement);
+                    traversePointer.nextElement = newNode;
                 }
                 i++;
                 traversePointer = traversePointer.nextElement;
             }
         }
+        size++;
     }
 
     public void addLast(T value) {
@@ -78,6 +78,36 @@ public class SinglyLinkedList<T> {
 
     public int size() {
         return size;
+    }
+
+    public T remove() {
+        return removeFirst();
+    }
+
+    public T removeFirst() {
+        if (size == 0)
+            return null;
+        else {
+            Node<T> elementToRemove = head;
+            head = head.nextElement;
+            size--;
+            return elementToRemove.value;
+        }
+    }
+
+    public T removeLast() {
+        if (size == 0)
+            return null;
+        else {
+            Node<T> lastElement = tail;
+            Node<T> traversePointer = head;
+            for (int i = 0; i < size - 2; i++) {
+                traversePointer = traversePointer.nextElement;
+            }
+            traversePointer.nextElement = null;
+            size--;
+            return lastElement.value;
+        }
     }
 
     // internal class represents one node of the linked list

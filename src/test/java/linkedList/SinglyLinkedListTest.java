@@ -1,14 +1,13 @@
-package list;
+package linkedList;
 
 import exception.IndexOutOfBoundException;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import linkedList.SinglyLinkedList;
 import org.junit.After;
 import org.junit.Test;
 
-public class SinglyLinkedListTest {
-    private final Logger logger = LogManager.getLogger(SinglyLinkedListTest.class);
+import static org.junit.Assert.assertTrue;
 
+public class SinglyLinkedListTest {
     private SinglyLinkedList<Integer> linkedList = new SinglyLinkedList();
 
     @After
@@ -57,7 +56,27 @@ public class SinglyLinkedListTest {
         linkedList.add(6);
         linkedList.add(7, 3);
         assert(linkedList.size() == 7);
-        System.out.print(linkedList.get(3));
         assert(linkedList.get(3) == 7);
+    }
+
+    @Test
+    public void remove() {
+        linkedList.add(1);
+        linkedList.add(2);
+        linkedList.add(3);
+        linkedList.add(4);
+        assertTrue(linkedList.remove() == 4);
+        assertTrue(linkedList.get(2).intValue() == 1);
+        assertTrue(linkedList.size() == 3);
+    }
+
+    @Test
+    public void removeLast() {
+        linkedList.add(1);
+        linkedList.add(2);
+        linkedList.add(3);
+        linkedList.add(4);
+        assertTrue(linkedList.removeLast() == 1);
+        assertTrue(linkedList.size() == 3);
     }
 }
