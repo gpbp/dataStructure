@@ -4,8 +4,8 @@ import exception.IndexOutOfBoundException;
 
 public class SinglyLinkedList<T> {
     private int size; // number of elements
-    private Node tail; // last element of the list
-    private Node head; // first element of the list
+    private Node<T> tail; // last element of the list
+    private Node<T> head; // first element of the list
 
     public void add(T value) {
         addFirst(value);
@@ -74,6 +74,10 @@ public class SinglyLinkedList<T> {
             traversePointer = traversePointer.nextElement;
         }
         return result;
+    }
+
+    public T peekLast() {
+        return tail.value;
     }
 
     public int size() {
